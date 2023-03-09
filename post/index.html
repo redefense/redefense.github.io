@@ -18,6 +18,10 @@
 <link rel="stylesheet" href="https://redefense.xyz/css/palettes/base16-dark.css">
 <link rel="stylesheet" href="https://redefense.xyz/css/risotto.css">
 <link rel="stylesheet" href="https://redefense.xyz/css/custom.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian&display=swap" rel="stylesheet">
 </head>
 
     <body>
@@ -54,7 +58,10 @@
         </header>
 
         <section class="post__summary">
-            ასდასდ
+            AMSI In-Memory Patching / P/Invoke 
+რომ დაგუგლოთ amsi bypass ან amsi evasion, უამრავ გამზადებულ “ქომანდებს” ნახავთ რომელთა ნახევარი უბრალოდ არ იმუშავებს. მიზეზი კი ის არის, რომ ანტივირუსი, რომელიც სისტემაზე არის მუდმივად განიცდის განახლებას და “მზა” ქომანდები სულაც არ არის ისეთ “მზამზარეული” როგორიც ერთი შეხედვით ჩანდა.
+მაგალითად, ავიღოთ ეს ქომანდი, რომელიც 2016 წელს არის დაინტიფიცირებული:
+[Ref].Assembly.GetType(&#39;System.Management.Automation.AmsiUtils&#39;).GetField(&#39;amsiInitFailed&#39;,&#39;NonPublic,Static&#39;).SetValue($null,$true) ამის მიზანი არის .NET reflection ტექნიკის დახმარებით მოახერხოს მემორიში amsiInitFailed ცვლადის შეცვლა, რის მერეც გაითიშება AMSI.
         </section>
     </article>
     

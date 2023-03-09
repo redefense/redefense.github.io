@@ -14,7 +14,10 @@
       <pubDate>Tue, 07 Mar 2023 01:38:06 +0400</pubDate>
       
       <guid>https://redefense.xyz/post/amsi-first/</guid>
-      <description>ასდასდ</description>
+      <description>AMSI In-Memory Patching / P/Invoke 
+რომ დაგუგლოთ amsi bypass ან amsi evasion, უამრავ გამზადებულ “ქომანდებს” ნახავთ რომელთა ნახევარი უბრალოდ არ იმუშავებს. მიზეზი კი ის არის, რომ ანტივირუსი, რომელიც სისტემაზე არის მუდმივად განიცდის განახლებას და “მზა” ქომანდები სულაც არ არის ისეთ “მზამზარეული” როგორიც ერთი შეხედვით ჩანდა.
+მაგალითად, ავიღოთ ეს ქომანდი, რომელიც 2016 წელს არის დაინტიფიცირებული:
+[Ref].Assembly.GetType(&amp;#39;System.Management.Automation.AmsiUtils&amp;#39;).GetField(&amp;#39;amsiInitFailed&amp;#39;,&amp;#39;NonPublic,Static&amp;#39;).SetValue($null,$true) ამის მიზანი არის .NET reflection ტექნიკის დახმარებით მოახერხოს მემორიში amsiInitFailed ცვლადის შეცვლა, რის მერეც გაითიშება AMSI.</description>
     </item>
     
   </channel>

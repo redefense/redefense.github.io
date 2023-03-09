@@ -62,6 +62,8 @@ h1:first-child {
 /* Paragraphs */
 p {
     margin: 0 0 1.5rem 0;
+    text-align: justify;
+    font-family: 'Noto Sans Georgian', sans-serif;
 }
 
 /* Links */
