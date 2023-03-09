@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ReDefense</title>
+    <link>https://redefense.xyz/</link>
+    <description>Recent content on ReDefense</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2021–2022</copyright>
+    <lastBuildDate>Tue, 07 Mar 2023 01:38:06 +0400</lastBuildDate><atom:link href="https://redefense.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Amsi First</title>
+      <link>https://redefense.xyz/post/amsi-first/</link>
+      <pubDate>Tue, 07 Mar 2023 01:38:06 +0400</pubDate>
+      
+      <guid>https://redefense.xyz/post/amsi-first/</guid>
+      <description>ასდასდ</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://redefense.xyz/about/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://redefense.xyz/about/</guid>
+      <description>ReDefense არის პროექტი, რომლის მიზანი არის კიბერ უსაფრთხოებით დაინტერესებული ადამიანებისთვის ტექნიკური საკითხების მიწოდება. ეს საკითხები შეეხება offensive/defensive თემებს.
+საბოლოო ჯამში ჩვენი მიზანია მაქსიმალურად გავზარდოთ ქვეყნის თავდაცვისუნარიანობა.</description>
+    </item>
+    
+  </channel>
+</rss>
