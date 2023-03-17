@@ -5,19 +5,18 @@
     <link>https://redefense.xyz/post/</link>
     <description>Recent content in Posts on ReDefense</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <copyright>© 2021–2022</copyright>
+    <language>en-us</language>
     <lastBuildDate>Tue, 07 Mar 2023 01:38:06 +0400</lastBuildDate><atom:link href="https://redefense.xyz/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AMSI In-Memory Patching</title>
-      <link>https://redefense.xyz/post/amsi-first/</link>
+      <link>https://redefense.xyz/post/amsi-inmemory-patching/</link>
       <pubDate>Tue, 07 Mar 2023 01:38:06 +0400</pubDate>
       
-      <guid>https://redefense.xyz/post/amsi-first/</guid>
-      <description>AMSI In-Memory Patching / P/Invoke 
-რომ დაგუგლოთ amsi bypass ან amsi evasion, უამრავ გამზადებულ “ქომანდებს” ნახავთ რომელთა ნახევარი უბრალოდ არ იმუშავებს. მიზეზი კი ის არის, რომ ანტივირუსი, რომელიც სისტემაზე არის, მუდმივად განიცდის განახლებას და “მზა” ქომანდები სულაც არ არის ისეთ “მზამზარეული” როგორიც ერთი შეხედვით ჩანდა.
-მაგალითად, ავიღოთ ეს ქომანდი, რომელიც 2016 წელს არის დაინტიფიცირებული:
-[Ref].Assembly.GetType(&amp;#39;System.Management.Automation.AmsiUtils&amp;#39;).GetField(&amp;#39;amsiInitFailed&amp;#39;,&amp;#39;NonPublic,Static&amp;#39;).SetValue($null,$true) ამის მიზანი არის .NET reflection ტექნიკის დახმარებით მოახერხოს მემორიში amsiInitFailed ცვლადის შეცვლა, რის მერეც გაითიშება AMSI.</description>
+      <guid>https://redefense.xyz/post/amsi-inmemory-patching/</guid>
+      <description>&lt;h1 id=&#34;amsi-in-memory-patching&#34;&gt;AMSI In-Memory Patching&lt;/h1&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;
+&lt;strong&gt;AMSI&lt;/strong&gt; ანუ &lt;strong&gt;Anti Malware Scan Interface&lt;/strong&gt; არის Microsoft - ის მიერ შემუშავებული ტექნოლოგია, რომლის მიზანიც იყო და არის memory ში მავნე signature - ების დაფიქსირება და იგი პირველად გაჩნდა Windows 10 - ში. AMSI - ს შეუძლია შეანელოს &amp;ldquo;შემტევის&amp;rdquo; აქტივობები, თუმცა მასზე თავის არიდება არ არის რთული და დროის საკითხია.&lt;/p&gt;
+&lt;p&gt;თქვენ, რომ დაგუგლოთ &lt;code&gt;amsi bypass&lt;/code&gt; ან &lt;code&gt;amsi evasion&lt;/code&gt;, უამრავ გამზადებულ “ქომანდებს” ნახავთ, რომელთა ნახევარი უბრალოდ არ იმუშავებს. მიზეზი კი ის არის, რომ ანტივირუსი, რომელიც სისტემაზე არის, მუდმივად განიცდის განახლებას და “მზა” ქომანდები სულაც არ არის ისეთ “მზამზარეული” როგორიც ერთი შეხედვით ჩანდა.&lt;/p&gt;</description>
     </item>
     
   </channel>

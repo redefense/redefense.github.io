@@ -1,125 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
-
-    <head><title>Posts &ndash; ReDefense</title>
-<meta name="description" content="A [hugo](https://gohugo.io) theme inspired by terminal ricing.">
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta charset="UTF-8"/>
-
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" />
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.1/css/academicons.min.css" integrity="sha512-b1ASx0WHgVFL5ZQhTgiPWX+68KjS38Jk87jg7pe+qC7q9YkEtFq0z7xCglv7qGIs/68d3mAp+StfC8WKC5SSAg==" crossorigin="anonymous" />
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Posts - ReDefense</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Posts" />
+<meta property="og:description" content="John Doe&#39;s Personal blog about everything" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://redefense.xyz/post/" />
 
 
-<link rel="stylesheet" href="https://redefense.xyz/css/palettes/base16-dark.css">
-<link rel="stylesheet" href="https://redefense.xyz/css/risotto.css">
-<link rel="stylesheet" href="https://redefense.xyz/css/custom.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="alternate" type="application/rss+xml" href="/post/index.xml" title="ReDefense">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
 </head>
-
-    <body>
-        <div class="page">
-
-            <header class="page__header"><h1 class="page__logo"><a href="https://redefense.xyz" class="page__logo-inner">ReDefense</a></h1>
-<nav class="page__nav main-nav">
-    <ul>
-    
-    
-    <li class="main-nav__item"><a class="nav-main-item" href="https://redefense.xyz/about/" title="">About</a></li>
-    
-    <li class="main-nav__item"><a class="nav-main-item active" href="https://redefense.xyz/post/" title="Posts">Posts</a></li>
-    
-    </ul>
-</nav>
-
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="ReDefense" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">ReDefense</div>
+					<div class="logo__tagline">ტექნიკური საკითხები კიბერ უსაფრთხოებით დაინტერესებული პირებისთვის</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
 </header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main list" role="main">
+	<header class="main__header">
+		<h1 class="main__title">Posts</h1>
+	</header><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/amsi-inmemory-patching/" rel="bookmark">
+			AMSI In-Memory Patching
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-03-07T01:38:06&#43;04:00">March 07, 2023</time></div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		<h1 id="amsi-in-memory-patching">AMSI In-Memory Patching</h1>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<strong>AMSI</strong> ანუ <strong>Anti Malware Scan Interface</strong> არის Microsoft - ის მიერ შემუშავებული ტექნოლოგია, რომლის მიზანიც იყო და არის memory ში მავნე signature - ების დაფიქსირება და იგი პირველად გაჩნდა Windows 10 - ში. AMSI - ს შეუძლია შეანელოს &ldquo;შემტევის&rdquo; აქტივობები, თუმცა მასზე თავის არიდება არ არის რთული და დროის საკითხია.</p>
+<p>თქვენ, რომ დაგუგლოთ <code>amsi bypass</code> ან <code>amsi evasion</code>, უამრავ გამზადებულ “ქომანდებს” ნახავთ, რომელთა ნახევარი უბრალოდ არ იმუშავებს. მიზეზი კი ის არის, რომ ანტივირუსი, რომელიც სისტემაზე არის, მუდმივად განიცდის განახლებას და “მზა” ქომანდები სულაც არ არის ისეთ “მზამზარეული” როგორიც ერთი შეხედვით ჩანდა.</p>
+	</div>
+</article>
+</main>
 
-            <section class="page__body">
-    <header class="content__header">
-        <h1>Posts</h1>
-        
-    </header>
 
-    
-    <article class="post">
-        <header class="post__header">
-            <h1><a href="https://redefense.xyz/post/amsi-first/">AMSI In-Memory Patching</a></h1>
-            <p class="post__meta">
-                ,
-                <span class="date">7 March 2023</span>
-            </p>
-        </header>
-
-        <section class="post__summary">
-            AMSI In-Memory Patching / P/Invoke 
-რომ დაგუგლოთ amsi bypass ან amsi evasion, უამრავ გამზადებულ “ქომანდებს” ნახავთ რომელთა ნახევარი უბრალოდ არ იმუშავებს. მიზეზი კი ის არის, რომ ანტივირუსი, რომელიც სისტემაზე არის, მუდმივად განიცდის განახლებას და “მზა” ქომანდები სულაც არ არის ისეთ “მზამზარეული” როგორიც ერთი შეხედვით ჩანდა.
-მაგალითად, ავიღოთ ეს ქომანდი, რომელიც 2016 წელს არის დაინტიფიცირებული:
-[Ref].Assembly.GetType(&#39;System.Management.Automation.AmsiUtils&#39;).GetField(&#39;amsiInitFailed&#39;,&#39;NonPublic,Static&#39;).SetValue($null,$true) ამის მიზანი არის .NET reflection ტექნიკის დახმარებით მოახერხოს მემორიში amsiInitFailed ცვლადის შეცვლა, რის მერეც გაითიშება AMSI.
-        </section>
-    </article>
-    
-
-            </section>
-
-            <section class="page__aside">
-                <div class="aside__about">
-<div class="aside__about">
-    <img class="about__logo" src="https://redefense.xyz/images/rice.svg" alt="Logo">
-<h1 class="about__title">risotto</h1>
-<p class="about__description">A <a href="https://gohugo.io">hugo</a> theme inspired by terminal ricing.</p>
+			</div>
+			
+<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH…" value="" name="q" aria-label="SEARCH…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="https://redefense.xyz">
+	</form>
 </div>
-
-
-<ul class="aside__social-links">
-    
-    <li>
-        <a href="https://github.com/joeroe/risotto" rel="me" aria-label="GitHub" title="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>&nbsp;
-    </li>
-    
-    <li>
-        <a href="mailto:example@example.com" rel="me" aria-label="Email" title="Email"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>&nbsp;
-    </li>
-    
-    <li>
-        <a href="https://orcid.org/0000-0001-2345-6789" rel="me" aria-label="ORCID" title="ORCID"><i class="ai ai-orcid" aria-hidden="true"></i></a>&nbsp;
-    </li>
-    
-</ul>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/amsi-inmemory-patching/">AMSI In-Memory Patching</a></li>
+		</ul>
+	</div>
 </div>
-                <hr>
-                <div class="aside__content">
-                </div>
-            </section>
-
-            <footer class="page__footer"><p>
-    
-    
-    
-    
-    
-    
-      
-    
-      
-        
-      
-    
-    
-    
-</p>
-<br /><br />
-<p class="copyright">© 2021–2022</p>
-<p class="advertisement">Powered by <a href="https://gohugo.io/">hugo</a> and <a href="https://github.com/joeroe/risotto">risotto</a>.</p>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 ReDefense.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
 </footer>
-
-        </div>
-    </body>
-
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
 </html>

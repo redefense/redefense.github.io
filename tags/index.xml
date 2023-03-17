@@ -5,7 +5,6 @@
     <link>https://redefense.xyz/tags/</link>
     <description>Recent content in Tags on ReDefense</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <copyright>© 2021–2022</copyright><atom:link href="https://redefense.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://redefense.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
