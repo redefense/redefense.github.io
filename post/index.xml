@@ -14,8 +14,9 @@
       
       <guid>https://redefense.xyz/post/amsi-inmemory-patching/</guid>
       <description>&lt;h1 id=&#34;amsi-in-memory-patching&#34;&gt;AMSI In-Memory Patching&lt;/h1&gt;
-&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;
-&lt;strong&gt;AMSI&lt;/strong&gt; ანუ &lt;strong&gt;Anti Malware Scan Interface&lt;/strong&gt; არის Microsoft - ის მიერ შემუშავებული ტექნოლოგია, რომლის მიზანიც იყო და არის memory ში მავნე signature - ების დაფიქსირება და იგი პირველად გაჩნდა Windows 10 - ში. AMSI - ს შეუძლია შეანელოს &amp;ldquo;შემტევის&amp;rdquo; აქტივობები, თუმცა მასზე თავის არიდება არ არის რთული და დროის საკითხია.&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://redefense.xyz/images/amsi-1/amsi-arch.jpg&#34; alt=&#34;Untitled&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;AMSI&lt;/strong&gt; ანუ &lt;strong&gt;Anti Malware Scan Interface&lt;/strong&gt; არის Microsoft - ის მიერ შემუშავებული ტექნოლოგია, რომლის მიზანიც იყო და არის memory ში მავნე signature - ების დაფიქსირება და იგი პირველად გაჩნდა Windows 10 - ში. AMSI - ს შეუძლია შეანელოს &amp;ldquo;შემტევის&amp;rdquo; აქტივობები, თუმცა მასზე თავის არიდება არ არის რთული და დროის საკითხია.&lt;/p&gt;
 &lt;p&gt;თქვენ, რომ დაგუგლოთ &lt;code&gt;amsi bypass&lt;/code&gt; ან &lt;code&gt;amsi evasion&lt;/code&gt;, უამრავ გამზადებულ “ქომანდებს” ნახავთ, რომელთა ნახევარი უბრალოდ არ იმუშავებს. მიზეზი კი ის არის, რომ ანტივირუსი, რომელიც სისტემაზე არის, მუდმივად განიცდის განახლებას და “მზა” ქომანდები სულაც არ არის ისეთ “მზამზარეული” როგორიც ერთი შეხედვით ჩანდა.&lt;/p&gt;</description>
     </item>
     
