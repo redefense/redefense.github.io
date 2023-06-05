@@ -6,7 +6,21 @@
     <description>Recent content on ReDefense</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 07 Mar 2023 01:38:06 +0400</lastBuildDate><atom:link href="https://redefense.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 05 Jun 2023 01:38:06 +0400</lastBuildDate><atom:link href="https://redefense.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Forest Compromise - Forging IR-TGT Tickets</title>
+      <link>https://redefense.xyz/post/attacking-forest/</link>
+      <pubDate>Mon, 05 Jun 2023 01:38:06 +0400</pubDate>
+      
+      <guid>https://redefense.xyz/post/attacking-forest/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://redefense.xyz/images/forest/main-logo.jpg&#34; alt=&#34;Untitled&#34;&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;“კაცი, რომ Domain Admin იქნება, ის Enterprise Admin - იც გახდებაო”
+    
+    -   ნათქვამია ნერდულ ანდაზაში.
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;0x00-შესავალი&#34;&gt;[0x00] შესავალი&lt;/h2&gt;
+&lt;p&gt;მიჩნეულია, რომ &lt;strong&gt;Active Directory&lt;/strong&gt; გარემოში, 1 forest - ში არსებული ნებისმიერი დომეინზე ჰაკერის მიერ მოპოვებული Domain Admin წვდომა მხოლოდ ვრცელდება იმ კონკრეტულ დომეინზე, რაც შეცდომაა. მნიშვნელობა არ აქვს რამდენად ჩაშლილი სტრუქტურაა, მაგალითად &lt;strong&gt;grandgrandchild.grandchild.child.redefense.local&lt;/strong&gt; დომეინის კომპრომიზირების შემთხვევაში მთლიანად &lt;strong&gt;redefense.local&lt;/strong&gt; არის “გაწეული”. რადგანაც ფორესტში დომეინებს შორის არის ყოველთვის 2 მხრივი ტრანზიტული ნდობა (2 way implicit transitive trust).&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>AMSI In-Memory Patching</title>
       <link>https://redefense.xyz/post/amsi-inmemory-patching/</link>

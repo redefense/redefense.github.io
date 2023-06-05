@@ -50,6 +50,26 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
+			<a href="/post/attacking-forest/" rel="bookmark">
+			Forest Compromise - Forging IR-TGT Tickets
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-06-05T01:38:06&#43;04:00">June 05, 2023</time></div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		<p><img src="/images/forest/main-logo.jpg" alt="Untitled"></p>
+<pre tabindex="0"><code>“კაცი, რომ Domain Admin იქნება, ის Enterprise Admin - იც გახდებაო”
+    
+    -   ნათქვამია ნერდულ ანდაზაში.
+</code></pre><h2 id="0x00-შესავალი">[0x00] შესავალი</h2>
+<p>მიჩნეულია, რომ <strong>Active Directory</strong> გარემოში, 1 forest - ში არსებული ნებისმიერი დომეინზე ჰაკერის მიერ მოპოვებული Domain Admin წვდომა მხოლოდ ვრცელდება იმ კონკრეტულ დომეინზე, რაც შეცდომაა. მნიშვნელობა არ აქვს რამდენად ჩაშლილი სტრუქტურაა, მაგალითად <strong>grandgrandchild.grandchild.child.redefense.local</strong> დომეინის კომპრომიზირების შემთხვევაში მთლიანად <strong>redefense.local</strong> არის “გაწეული”. რადგანაც ფორესტში დომეინებს შორის არის ყოველთვის 2 მხრივი ტრანზიტული ნდობა (2 way implicit transitive trust).</p>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
 			<a href="/post/amsi-inmemory-patching/" rel="bookmark">
 			AMSI In-Memory Patching
 			</a>
@@ -82,6 +102,7 @@
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/attacking-forest/">Forest Compromise - Forging IR-TGT Tickets</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/amsi-inmemory-patching/">AMSI In-Memory Patching</a></li>
 		</ul>
 	</div>
