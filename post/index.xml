@@ -13,10 +13,14 @@
       <pubDate>Sat, 17 Jun 2023 08:38:06 +0400</pubDate>
       
       <guid>https://redefense.xyz/post/injecting-shellcode/</guid>
-      <description>მოგესალმებით
-კიბერ-კრიმინალები ხშირად მიმართავენ მაკროებს MS Word ან MS Excell - ის დოკუმენტებში, თუმცა ნელ-ნელა ეს ტენდენცია იკლებს რადგანაც Microsoft - მა აკრძალა მაკროების გაშვება ისეთ ფაილებზე, რომლებიც ინტერნეტიდან არის გადმოწერილი.
-დღევანდელ პოსტში ვისაუბრებთ მარტივ მაკროზე, რომლის მიზანიცაა MS Word - ის პროცესში Meterpreter Shellcode - ს ინექცია შემდეგი კლასიკური მეთოდით:
-1. VirtualAlloc2. RtlMoveMemory3. CreateThreadშენიშვნა: ეს პოსტიც და ყველა სხვა პოსტიც, ამ ბლოგზე არის მხოლოდ საგანმანათლებლო. ნებისმიერი არასანქცირებული ქმედება ისჯება კანონდებლობით.</description>
+      <description>&lt;p&gt;&lt;img src=&#34;https://redefense.xyz/images/inject-shellcode/main-logo.jpg&#34; alt=&#34;Untitled&#34;&gt;
+მოგესალმებით&lt;/p&gt;
+&lt;p&gt;კიბერ-კრიმინალები ხშირად მიმართავენ მაკროებს &lt;code&gt;MS Word&lt;/code&gt; ან &lt;code&gt;MS Excell&lt;/code&gt; - ის დოკუმენტებში, თუმცა ნელ-ნელა ეს ტენდენცია იკლებს რადგანაც Microsoft - მა აკრძალა მაკროების გაშვება ისეთ ფაილებზე, რომლებიც ინტერნეტიდან არის გადმოწერილი.&lt;/p&gt;
+&lt;p&gt;დღევანდელ პოსტში ვისაუბრებთ მარტივ მაკროზე, რომლის მიზანიცაა &lt;code&gt;MS Word&lt;/code&gt; - ის პროცესში &lt;code&gt;Meterpreter Shellcode&lt;/code&gt; - ს ინექცია შემდეგი კლასიკური მეთოდით:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;1. VirtualAlloc
+2. RtlMoveMemory
+3. CreateThread
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>

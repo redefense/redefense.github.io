@@ -60,10 +60,14 @@
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-06-17T08:38:06&#43;04:00">June 17, 2023</time></div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		მოგესალმებით
-კიბერ-კრიმინალები ხშირად მიმართავენ მაკროებს MS Word ან MS Excell - ის დოკუმენტებში, თუმცა ნელ-ნელა ეს ტენდენცია იკლებს რადგანაც Microsoft - მა აკრძალა მაკროების გაშვება ისეთ ფაილებზე, რომლებიც ინტერნეტიდან არის გადმოწერილი.
-დღევანდელ პოსტში ვისაუბრებთ მარტივ მაკროზე, რომლის მიზანიცაა MS Word - ის პროცესში Meterpreter Shellcode - ს ინექცია შემდეგი კლასიკური მეთოდით:
-1. VirtualAlloc2. RtlMoveMemory3. CreateThreadშენიშვნა: ეს პოსტიც და ყველა სხვა პოსტიც, ამ ბლოგზე არის მხოლოდ საგანმანათლებლო. ნებისმიერი არასანქცირებული ქმედება ისჯება კანონდებლობით.
+		<p><img src="/images/inject-shellcode/main-logo.jpg" alt="Untitled">
+მოგესალმებით</p>
+<p>კიბერ-კრიმინალები ხშირად მიმართავენ მაკროებს <code>MS Word</code> ან <code>MS Excell</code> - ის დოკუმენტებში, თუმცა ნელ-ნელა ეს ტენდენცია იკლებს რადგანაც Microsoft - მა აკრძალა მაკროების გაშვება ისეთ ფაილებზე, რომლებიც ინტერნეტიდან არის გადმოწერილი.</p>
+<p>დღევანდელ პოსტში ვისაუბრებთ მარტივ მაკროზე, რომლის მიზანიცაა <code>MS Word</code> - ის პროცესში <code>Meterpreter Shellcode</code> - ს ინექცია შემდეგი კლასიკური მეთოდით:</p>
+<pre tabindex="0"><code>1. VirtualAlloc
+2. RtlMoveMemory
+3. CreateThread
+</code></pre>
 	</div>
 </article><article class="list__item post">
 	
