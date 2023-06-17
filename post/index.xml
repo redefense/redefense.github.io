@@ -6,7 +6,32 @@
     <description>Recent content in Posts on ReDefense</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 05 Jun 2023 01:38:06 +0400</lastBuildDate><atom:link href="https://redefense.xyz/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 17 Jun 2023 01:38:06 +0400</lastBuildDate><atom:link href="https://redefense.xyz/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AD Domain Persistence (1 ნაწილი)</title>
+      <link>https://redefense.xyz/post/domain-persistence/</link>
+      <pubDate>Sat, 17 Jun 2023 01:38:06 +0400</pubDate>
+      
+      <guid>https://redefense.xyz/post/domain-persistence/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://redefense.xyz/images/persistence-one/ad-logo.png&#34; alt=&#34;Untitled&#34;&gt;&lt;/p&gt;
+&lt;p&gt;მოგესალმებით&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;TL;DR
+
+krbtgt იუზერის ჰეში არის ძალიან,ძალიან მნიშვნელოვანი. თვალის ჩინივით გაუფრთხილდით :))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Active Directory&lt;/strong&gt; გარემოში არსებობს უამრავი გზები თუ როგორ შეინარჩუნოს შემტევმა პირმა წვდომა მას შემდეგ რაც მოიპოვებს წვდომას DA (Domain Admin) ან EA (Enterprise Admin) - ზე. თუკი მოხდება შემტევი პირის მიერ დომეინის “გაწევა” და თუკი კარგად გათვიცნობიერებულია, ძალიან რთულია ე.წ &lt;code&gt;backdoor&lt;/code&gt; - ების ამოღება/განეიტრალება მათი სავარაუდო რაოდენობიდან გამომდინარე.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Domain Persistence&lt;/strong&gt; იქნება პოსტების ციკლი, რომელიც მიეძღვნება ამ თემას. ეს პირველი ნაწილია და ამ ნაწილში შემოგთავაზებთ შემდეგ Persistence მეთოდებს:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Forging Golden Tickets
+&lt;ul&gt;
+&lt;li&gt;PAC ვალიდაცია და Microsoft - ის პაჩი &lt;code&gt;CVE-2021-42287&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Skeleton Keys&lt;/li&gt;
+&lt;li&gt;Abuse AdminSDHolder&lt;/li&gt;
+&lt;li&gt;Abuse Domain Object DACL&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
     <item>
       <title>Forest Compromise - Forging IR-TGT Tickets (1 ნაწილი)</title>
       <link>https://redefense.xyz/post/attacking-forest/</link>
