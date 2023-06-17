@@ -6,7 +6,19 @@
     <description>Recent content on ReDefense</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Jun 2023 01:38:06 +0400</lastBuildDate><atom:link href="https://redefense.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 17 Jun 2023 08:38:06 +0400</lastBuildDate><atom:link href="https://redefense.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Injecting Meterpreter Shellcode</title>
+      <link>https://redefense.xyz/post/injecting-shellcode/</link>
+      <pubDate>Sat, 17 Jun 2023 08:38:06 +0400</pubDate>
+      
+      <guid>https://redefense.xyz/post/injecting-shellcode/</guid>
+      <description>მოგესალმებით
+კიბერ-კრიმინალები ხშირად მიმართავენ მაკროებს MS Word ან MS Excell - ის დოკუმენტებში, თუმცა ნელ-ნელა ეს ტენდენცია იკლებს რადგანაც Microsoft - მა აკრძალა მაკროების გაშვება ისეთ ფაილებზე, რომლებიც ინტერნეტიდან არის გადმოწერილი.
+დღევანდელ პოსტში ვისაუბრებთ მარტივ მაკროზე, რომლის მიზანიცაა MS Word - ის პროცესში Meterpreter Shellcode - ს ინექცია შემდეგი კლასიკური მეთოდით:
+1. VirtualAlloc2. RtlMoveMemory3. CreateThreadშენიშვნა: ეს პოსტიც და ყველა სხვა პოსტიც, ამ ბლოგზე არის მხოლოდ საგანმანათლებლო. ნებისმიერი არასანქცირებული ქმედება ისჯება კანონდებლობით.</description>
+    </item>
+    
     <item>
       <title>AD Domain Persistence (1 ნაწილი)</title>
       <link>https://redefense.xyz/post/domain-persistence/</link>

